@@ -98,6 +98,8 @@ class Contact(models.Model):
 
 
 class Email(Contact):
+    value = models.EmailField(max_length=300)
+
     class Meta:
         abstract = True
 
@@ -105,6 +107,7 @@ class Email(Contact):
 class Phone(models.Model):
     class Meta:
         abstract = True
+
 
 
 class Address(models.Model):
@@ -116,7 +119,7 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=10, null=True, blank=True)
 
     @property
-    def val(self):
+    def value(self):
         city_line = ", ".join([str(s) for s in [self.zip_code, self.city] if s is not None])
         country_line = ", ".join([str(s) for s in [self.state, self.country] if s is not None])
         lines = [self.address_1, self.address_2, city_line, country_line]
