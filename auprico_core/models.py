@@ -84,14 +84,12 @@ class Person(models.Model):
 
 
 class Contact(models.Model):
-    person = models.ForeignKey(Person, on_delete=PROTECT, null=True, blank=True, related_name='contacts')
     label = models.CharField(max_length=30)
     is_main = models.BooleanField(default=False)
     value = models.CharField(max_length=300)
     created_ts = models.DateTimeField(default=django_now)
     edited_ts = models.DateTimeField(auto_now=True)
     is_deleted = models.BooleanField(default=False)
-    edited_by = models.ForeignKey(Person, on_delete=PROTECT, null=True, blank=True, related_name='edited_contacts')
 
     class Meta:
         abstract = True
