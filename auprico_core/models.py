@@ -79,6 +79,8 @@ class Person(models.Model):
     first_name = models.CharField(max_length=200, blank=True)
     last_name = models.CharField(max_length=200, blank=True)
 
+    language = models.ForeignKey(Language, on_delete=PROTECT, null=True, blank=True)
+
     class Meta:
         abstract = True
 
@@ -102,13 +104,12 @@ class Email(Contact):
         abstract = True
 
 
-class Phone(models.Model):
+class Phone(Contact):
     class Meta:
         abstract = True
 
 
-
-class Address(models.Model):
+class Address(Contact):
     address_1 = models.CharField(max_length=1000, null=True, blank=True)
     address_2 = models.CharField(max_length=1000, null=True, blank=True)
     city = models.CharField(max_length=200, null=True, blank=True)
